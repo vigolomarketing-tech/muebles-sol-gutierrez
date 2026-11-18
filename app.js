@@ -7,19 +7,19 @@
 
   // Textos y enlaces de contacto
   $("#lead").textContent = C.negocio.descripcion;
-  ["#cta-hero", "#cta-ubi", "#wa-float"].forEach((s) => ($(s).href = wa(C.contacto.mensajeWhatsapp)));
+  ["#cta-hero", "#cta-ubi", "#wa-float", "#cta-nav"].forEach((s) => ($(s).href = wa(C.contacto.mensajeWhatsapp)));
   $("#dir").textContent = C.contacto.direccion;
   $("#mapa").src = C.contacto.mapsEmbed;
   $("#como-llegar").href = C.contacto.mapsLink;
   $("#anio").textContent = new Date().getFullYear();
 
   // Menú celular
-  const burger = $("#burger"), nav = $("#nav");
-  burger.onclick = () => {
-    const o = nav.classList.toggle("open");
-    burger.setAttribute("aria-expanded", o);
-  };
-  nav.onclick = (e) => { if (e.target.tagName === "A") { nav.classList.remove("open"); burger.setAttribute("aria-expanded", false); } };
+  const burger = $("#burger"), nav = $("#nav"), top = $("#top");
+  const setMenu = (o) => { top.classList.toggle("open", o); burger.setAttribute("aria-expanded", o); document.body.style.overflow = o ? "hidden" : ""; };
+  burger.onclick = () => setMenu(!top.classList.contains("open"));
+  nav.onclick = (e) => { if (e.target.tagName === "A") setMenu(false); };
+  const onScroll = () => top.classList.toggle("solid", scrollY > 30);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
   // Hora de Argentina
   function ahoraAR() {
@@ -36,7 +36,7 @@
   }
   const b = $("#abierto");
   const ab = abiertoAhora();
-  b.textContent = ab ? "Abierto ahora" : "Cerrado ahora · escribinos igual y te respondemos";
+  b.textContent = ab ? "Abierto ahora · Lun a Sáb de 8 a 18 hs" : "Cerrado ahora · escribinos y te respondemos en el horario de atención";
   b.classList.add(ab ? "on" : "off");
 
   // Horarios
@@ -52,27 +52,28 @@
   const cats = ["Todos", ...C.categorias];
   const chips = $("#chips");
   function pintarChips() {
-    chips.innerHTML = cats.map((c) => `<button class="chip" type="button" aria-pressed="${c === cat}">${esc(c)}</button>`).join("");
+    chips.innerHTML = cats.map((c) => `<button class="tab" type="button" aria-pressed="${c === cat}">${esc(c)}</button>`).join("");
   }
-  chips.onclick = (e) => { if (e.target.classList.contains("chip")) { cat = e.target.textContent; pintarChips(); pintarGrid(); } };
+  chips.onclick = (e) => { if (e.target.classList.contains("tab")) { cat = e.target.textContent; pintarChips(); pintarGrid(); } };
 
   const msgProd = (p) => `¡Hola! Vi su web y quería consultar por: ${p.nombre}. ¿Me pasan precio y tiempos?`;
 
   function pintarGrid() {
-    $("#grid").innerHTML = C.productos.filter((p) => cat === "Todos" || p.categoria === cat).map((p) => `
-      <article class="card">
+    $("#grid").innerHTML = C.productos.filter((p) => cat === "Todos" || p.categoria === cat).map((p, i) => `
+      <article class="card rv">
         <button class="card__img" type="button" data-id="${p.id}" aria-label="Ver ${esc(p.nombre)} más grande">
           <img src="${p.foto}" alt="${esc(p.nombre)}" width="${p.w}" height="${p.h}" loading="lazy">
         </button>
         <div class="card__body">
+          <span class="card__n">${String(i + 1).padStart(2, "0")} — ${esc(p.categoria)}</span>
           <h3>${esc(p.nombre)}</h3>
           <p>${esc(p.descripcion)}</p>
           ${p.precio ? `<span class="precio">${peso(p.precio)}</span>` : ""}
-          <a class="btn btn--wa" href="${wa(msgProd(p))}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="card__link" href="${wa(msgProd(p))}" target="_blank" rel="noopener">Consultar por WhatsApp →</a>
         </div>
       </article>`).join("");
+    revelar();
   }
-  pintarChips(); pintarGrid();
 
   // Lightbox nativo
   const lb = $("#lightbox");
@@ -89,11 +90,19 @@
 
   // Medidas
   $("#medidas-lista").innerHTML = C.medidasLinea.map((m) => `
-    <div class="med"><h3>${esc(m.nombre)}</h3><p class="m">${esc(m.medidas)}</p><p>${esc(m.detalle)}</p>
+    <div class="med rv"><h3>${esc(m.nombre)}</h3><p class="m">${esc(m.medidas)}</p><p>${esc(m.detalle)}</p>
     <p class="precio">${m.precio ? peso(m.precio) : "Consultá el precio"}</p></div>`).join("");
 
-  // Pasos
-  $("#pasos").innerHTML = C.pasos.map((p) => `<li><strong>${esc(p.titulo)}</strong>${esc(p.texto)}</li>`).join("");
+  // Datos destacados, pilares y proceso
+  $("#datos").innerHTML = C.datos.map(([v, t]) => `<li><strong>${esc(v)}</strong><span>${esc(t)}</span></li>`).join("");
+  $("#pilares").innerHTML = C.pilares.map((p, i) => `<div class="pilar rv"><span class="pilar__n">0${i + 1}</span><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p></div>`).join("");
+  $("#pasos").innerHTML = C.proceso.map((p) => `<li class="rv"><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p></li>`).join("");
+
+  // Aparición suave al hacer scroll
+  const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 }) : null;
+  function revelar() { document.querySelectorAll(".rv:not(.in)").forEach((el) => (io ? io.observe(el) : el.classList.add("in"))); }
+  pintarChips(); pintarGrid();
+  revelar();
 
   // Reseñas (solo si hay)
   if (C.resenas.length) {

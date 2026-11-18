@@ -53,12 +53,12 @@ const CONFIG = {
       w: 900, h: 1600,
     },
     {
-      id: "placard-interior-completo",
-      categoria: "Placares",
-      nombre: "Placard con barral, cajones y estantes",
-      descripcion: "Interior bien resuelto: dos barrales, estantes, cajoneras y baulera.",
-      foto: "img/placard-interior-completo.webp",
-      w: 900, h: 1197,
+      id: "rack-tv-flotante",
+      categoria: "Living y dormitorio",
+      nombre: "Rack de TV flotante",
+      descripcion: "Panel con estantes, cajones con manija y espacio para el equipo. Sin cables a la vista.",
+      foto: "img/rack-tv-flotante.webp",
+      w: 900, h: 1209,
     },
     {
       id: "placard-con-baulera",
@@ -77,22 +77,6 @@ const CONFIG = {
       w: 900, h: 1200,
     },
     {
-      id: "placard-una-puerta",
-      categoria: "Placares",
-      nombre: "Placard de 1 puerta corrediza",
-      descripcion: "Compacto, para ambientes chicos. Estantes y cajones con puerta corrediza.",
-      foto: "img/placard-una-puerta.webp",
-      w: 900, h: 1200,
-    },
-    {
-      id: "rack-tv-flotante",
-      categoria: "Living y dormitorio",
-      nombre: "Rack de TV flotante",
-      descripcion: "Panel con estantes, cajones con manija y espacio para el equipo. Sin cables a la vista.",
-      foto: "img/rack-tv-flotante.webp",
-      w: 900, h: 1209,
-    },
-    {
       id: "mesa-de-luz",
       categoria: "Living y dormitorio",
       nombre: "Mesa de luz con cajón",
@@ -100,12 +84,44 @@ const CONFIG = {
       foto: "img/mesa-de-luz.webp",
       w: 900, h: 996,
     },
+    {
+      id: "placard-interior-completo",
+      categoria: "Placares",
+      nombre: "Placard con barral, cajones y estantes",
+      descripcion: "Interior bien resuelto: dos barrales, estantes, cajoneras y baulera.",
+      foto: "img/placard-interior-completo.webp",
+      w: 900, h: 1197,
+    },
+    {
+      id: "placard-una-puerta",
+      categoria: "Placares",
+      nombre: "Placard de 1 puerta corrediza",
+      descripcion: "Compacto, para ambientes chicos. Estantes y cajones con puerta corrediza.",
+      foto: "img/placard-una-puerta.webp",
+      w: 900, h: 1200,
+    },
   ],
 
-  pasos: [
-    { titulo: "Contanos qué necesitás", texto: "Mandanos las medidas del lugar y, si tenés, una foto o idea de lo que querés." },
-    { titulo: "Te pasamos el presupuesto", texto: "Te respondemos por WhatsApp con el precio y los tiempos de fabricación." },
-    { titulo: "Lo fabricamos y lo recibís", texto: "Lo hacemos en nuestra fábrica, en melamina de 18 mm, y coordinamos la entrega." },
+  // Datos destacados bajo el hero
+  datos: [
+    ["18 mm", "Melamina de espesor"],
+    ["A medida", "Cada mueble, único"],
+    ["Directo", "De fábrica, sin intermediarios"],
+    ["Lun a Sáb", "8 a 18 hs"],
+  ],
+
+  pilares: [
+    { titulo: "Fabricación propia", texto: "Somos fabricantes. Diseñamos y producimos cada mueble en nuestra fábrica de Quilmes Oeste, sin intermediarios." },
+    { titulo: "Hecho a tu medida", texto: "Adaptamos alturas, anchos y distribución interior a tu espacio y a cómo vivís: barrales, cajones, estantes y baulera." },
+    { titulo: "Melamina de 18 mm", texto: "Placas firmes y de terminación prolija, con puertas corredizas y herrajes que acompañan el uso diario." },
+  ],
+
+  // PENDIENTE CLIENTE: confirmar que hacen visita de medición, plazos y entrega/instalación
+  proceso: [
+    { titulo: "Consulta", texto: "Nos contás qué necesitás y nos pasás fotos o medidas del lugar por WhatsApp." },
+    { titulo: "Diseño y presupuesto", texto: "Definimos distribución, terminaciones y te enviamos el presupuesto sin cargo." },
+    { titulo: "Fabricación", texto: "Producimos tu mueble en melamina de 18 mm en nuestra fábrica." },
+    { titulo: "Entrega", texto: "Coordinamos la entrega para que lo recibas listo para usar." },
   ],
 
   resenas: [
