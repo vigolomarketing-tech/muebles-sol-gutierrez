@@ -7,7 +7,7 @@
 
   // Textos y enlaces de contacto
   $("#lead").textContent = C.negocio.descripcion;
-  ["#cta-hero", "#cta-ubi", "#wa-float", "#cta-nav"].forEach((s) => ($(s).href = wa(C.contacto.mensajeWhatsapp)));
+  ["#cta-hero", "#cta-ubi", "#wa-float"].forEach((s) => ($(s).href = wa(C.contacto.mensajeWhatsapp)));
   $("#dir").textContent = C.contacto.direccion;
   $("#mapa").src = C.contacto.mapsEmbed;
   $("#como-llegar").href = C.contacto.mapsLink;
