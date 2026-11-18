@@ -111,9 +111,12 @@ h1{text-wrap:balance}
 .medidas{display:grid;gap:12px}
 .med{background:var(--card);border-radius:var(--r);padding:2rem 1.6rem;display:grid;gap:.5rem}
 .med h3{font-size:.82rem;font-weight:600;color:var(--acc);letter-spacing:0}
-.med .m{font-size:clamp(2rem,7vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.med .m{font-size:clamp(1.9rem,7vw,2.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.05}
 .med p:not(.m):not(.precio){color:var(--mut);font-size:.95rem}
-.med .precio{margin-top:.8rem;font-size:.9rem}
+.med .precio{margin-top:.6rem;font-size:1.5rem;letter-spacing:-.03em}
+.med .btn{justify-self:start;margin-top:.8rem}
+.notas{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.4rem;color:var(--mut);font-size:.92rem;font-weight:500}
+.notas li::before{content:"✓ ";color:var(--acc);font-weight:700}
 
 /* reseñas */
 .resenas{display:grid;gap:12px}
@@ -173,7 +176,7 @@ h1{text-wrap:balance}
   .pilares{grid-template-columns:repeat(3,1fr)}
   .panel{padding:4rem 2.5rem}
   .proceso{grid-template-columns:repeat(2,1fr)}
-  .medidas{grid-template-columns:repeat(2,1fr)}
+  .medidas{grid-template-columns:repeat(3,1fr)}
   .resenas{grid-template-columns:repeat(3,1fr)}
   .ubi__card{padding:2.6rem}
 }

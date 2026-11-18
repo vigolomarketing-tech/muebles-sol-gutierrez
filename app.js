@@ -92,10 +92,12 @@
   };
   lb.onclick = (e) => { if (e.target === lb) lb.close(); };
 
-  // Medidas
+  // Promos de placares
   $("#medidas-lista").innerHTML = C.medidasLinea.map((m) => `
     <div class="med rv"><h3>${esc(m.nombre)}</h3><p class="m">${esc(m.medidas)}</p><p>${esc(m.detalle)}</p>
-    <p class="precio">${m.precio ? peso(m.precio) : "Consultá el precio"}</p></div>`).join("");
+    <p class="precio">${m.precio ? peso(m.precio) : "Consultá el precio"}</p>
+    <a class="btn btn--ink btn--sm" href="${wa(`¡Hola! Vi su web y quiero consultar por el placard de ${m.medidas}${m.precio ? " (" + peso(m.precio) + ")" : ""}.`)}" target="_blank" rel="noopener">Consultar esta promo</a></div>`).join("");
+  $("#notas-promo").innerHTML = (C.condicionesPromo || []).map((n) => `<li>${esc(n)}</li>`).join("");
 
   // Datos destacados, pilares y proceso
   $("#datos").innerHTML = C.datos.map(([v, t]) => `<li><strong>${esc(v)}</strong><span>${esc(t)}</span></li>`).join("");

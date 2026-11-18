@@ -33,13 +33,13 @@ const CONFIG = {
     6: [["08:00", "18:00"]],
   },
 
-  // Medidas de línea que el cliente promociona (ancho x alto x profundidad, en cm)
-  // PENDIENTE CLIENTE: confirmar medidas y precios (el banner de Instagram tiene precios cortados)
+  // Promo de placares (precios en pesos). Confirmados por el cliente por WhatsApp el 18/11/2026.
   medidasLinea: [
-    { nombre: "Placard grande", medidas: "220 × 225 × 55 cm", detalle: "Corredizo con baulera, cajones y barral", precio: null },
-    { nombre: "Placard mediano", medidas: "180 × 180 × 55 cm", detalle: "Dos puertas corredizas, cajones y estantes", precio: null },
+    { nombre: "Placard chico", medidas: "120 × 180 × 55 cm", detalle: "Interior crudo, exterior blanco", precio: 210000 },
+    { nombre: "Placard mediano", medidas: "180 × 180 × 55 cm", detalle: "Interior crudo, exterior blanco", precio: 270000 },
+    { nombre: "Placard grande", medidas: "220 × 225 × 55 cm", detalle: "Interior crudo, exterior blanco", precio: 460000 },
   ],
-  // precio: número en pesos (ej. 460000) para mostrarlo; null = "Consultá precio"
+  condicionesPromo: ["Envío aparte (consultá tu zona)", "Abonás al recibir"], // PENDIENTE CLIENTE: confirmar vigencia de la promo
 
   categorias: ["Placares", "Living y dormitorio"],
 
