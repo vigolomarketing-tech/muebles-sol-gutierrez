@@ -36,7 +36,7 @@
   }
   const b = $("#abierto");
   const ab = abiertoAhora();
-  b.textContent = ab ? "Abierto ahora · Lun a Sáb de 8 a 18 hs" : "Cerrado ahora · escribinos y te respondemos en el horario de atención";
+  b.textContent = ab ? "Abierto ahora" : "Cerrado ahora · respondemos en horario de atención";
   b.classList.add(ab ? "on" : "off");
 
   // Horarios
@@ -65,11 +65,15 @@
           <img src="${p.foto}" alt="${esc(p.nombre)}" width="${p.w}" height="${p.h}" loading="lazy">
         </button>
         <div class="card__body">
-          <span class="card__n">${String(i + 1).padStart(2, "0")} — ${esc(p.categoria)}</span>
-          <h3>${esc(p.nombre)}</h3>
-          <p>${esc(p.descripcion)}</p>
-          ${p.precio ? `<span class="precio">${peso(p.precio)}</span>` : ""}
-          <a class="card__link" href="${wa(msgProd(p))}" target="_blank" rel="noopener">Consultar por WhatsApp →</a>
+          <div>
+            <span class="card__n">${String(i + 1).padStart(2, "0")} · ${esc(p.categoria)}</span>
+            <h3>${esc(p.nombre)}</h3>
+            <p>${esc(p.descripcion)}</p>
+            ${p.precio ? `<span class="precio">${peso(p.precio)}</span>` : ""}
+          </div>
+          <a class="card__go" href="${wa(msgProd(p))}" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp: ${esc(p.nombre)}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </article>`).join("");
     revelar();
